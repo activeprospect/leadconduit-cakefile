@@ -10,6 +10,8 @@ module.exports = (task) ->
   binDir = path.join(baseDir, 'node_modules', '.bin')
 
   task 'build', ->
+    console.log "binDir: #{binDir}"
+    run "find ."
     run "rm -fr ./lib; #{binDir}/coffee -o lib -c src"
 
 
@@ -60,6 +62,7 @@ run = (args...) ->
   options.stdio ?= 'inherit'
 
   command += " #{params.join} " if params?
+  console.log "running #{command}..."
   cmd = spawn '/bin/sh', ['-c', command], options
 
   process.on 'SIGHUP', ->
