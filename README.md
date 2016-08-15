@@ -8,7 +8,7 @@ A Node.JS utility module for building LeadConduit integrations.
 This module provides the standard build utilities for integration modules. To use it:
 
 1. require in your module's `package.json`: `npm install leadconduit-cakefile --save-dev`
-2. existing modules may have `coffee-script` and `mocha` in their `devDependencies` - those can (probably) be removed.
+2. due to npm-install bootstrapping issues, your module must include `coffee-script` in `devDependencies` (other build-related modules, e.g., `mocha`, `coffeelint`, are provided here and not needed in `devDependencies`).
 3. create a file called `Cakefile` in the root of the module, with this single line:
 
 ```coffeescript
