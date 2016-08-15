@@ -1,0 +1,27 @@
+{
+  "name": "leadconduit-cakefile",
+  "description": "A Node.JS utility module for building LeadConduit integrations",
+  "version": "0.0.0",
+  "license": "CC-BY-NC-ND-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeprospect/leadconduit-cakefile.git"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "cake test",
+    "prepublish": "cake build"
+  },
+  "dependencies": {
+    "coffee-script": ">= 1.7.0",
+    "coffeelint": "^1.15.7",
+    "glob": "^7.0.5",
+    "markdown-pdf": "^7.0.0",
+    "mocha": ">=3.0.0"
+  },
+  "devDependencies": {
+    "chai": ">= 1.9.0"
+  }
+}
