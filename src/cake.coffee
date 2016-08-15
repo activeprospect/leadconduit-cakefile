@@ -11,8 +11,7 @@ module.exports = (task) ->
 
   task 'build', ->
     console.log "binDir: #{binDir}"
-    run "find ."
-    run "rm -fr ./lib; #{binDir}/coffee -o lib -c src"
+    run "pwd; ls -lF; rm -fr ./lib; #{binDir}/coffee -o lib -c src"
 
 
   task 'lint', ->
