@@ -4,18 +4,16 @@ fs = require 'fs'
 glob = require 'glob'
 log = console.log
 
+
 module.exports = (task) ->
 
-  baseDir = path.resolve(path.join(__dirname, '..'))
-  binDir = path.join(baseDir, 'node_modules', '.bin')
-
   task 'build', ->
-    run "rm -fr ./lib; ./node_modules/.bin/coffee -o lib -c src"
+    run 'rm -fr ./lib; ./node_modules/.bin/coffee -o lib -c src'
 
 
   task 'lint', ->
-    coffeeLintPath = path.resolve(path.join(baseDir, 'coffeelint.json'))
-    run "#{binDir}/coffeelint -f #{coffeeLintPath} src/*"
+    coffeeLintPath = path.join(__dirname, '..', 'coffeelint.json')
+    run "coffeelint -f #{coffeeLintPath} src/*"
 
 
   task 'pdf', ->
@@ -36,7 +34,7 @@ module.exports = (task) ->
       fileBaseName = path.basename(mdFile, path.extname(mdFile))
       pdfFile = "#{pdfDir}/#{fileBaseName}.#{version}.pdf"
       log "creating #{pdfFile}..."
-      run "#{binDir}/markdown-pdf #{mdFile} -o #{pdfFile}", stdio: [process.stdin, process.stdout, 'ignore']
+      run "markdown-pdf #{mdFile} -o #{pdfFile}", stdio: [process.stdin, process.stdout, 'ignore']
 
 
   option '-p', '--prefix', 'prefix for test files (prefix-string or dir/)'
@@ -44,7 +42,7 @@ module.exports = (task) ->
     prefix = options.path or ''
     pattern = "spec/{,**/}#{prefix}*spec.coffee"
     log("Running tests at #{pattern}...")
-    run "NODE_ENV=test TZ=GMT #{binDir}/mocha --compilers coffee:coffee-script/register --reporter spec --colors --recursive '#{pattern}'"
+    run "NODE_ENV=test TZ=GMT mocha --compilers coffee:coffee-script/register --reporter spec --colors --recursive '#{pattern}'"
 
 
 run = (args...) ->
@@ -59,6 +57,10 @@ run = (args...) ->
   options ?= {}
   options.stdio ?= 'inherit'
 
+  binDirNpm2 = path.join(__dirname, '..', 'node_modules', '.bin')
+  binDirNpm3 = path.join('.', 'node_modules', '.bin')
+
+  command = "PATH=$PATH:#{binDirNpm2}:#{binDirNpm3}; #{command}"
   command += " #{params.join} " if params?
   cmd = spawn '/bin/sh', ['-c', command], options
 
