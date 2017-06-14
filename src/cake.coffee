@@ -6,9 +6,10 @@ log = console.log
 
 
 module.exports = (task) ->
-
+  
+    
   task 'build', ->
-    run 'rm -fr ./lib; ./node_modules/.bin/coffee -o lib -c src'
+    run "rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && find . -name '*.js' -exec rsync -R {} ../lib \\;"
 
 
   task 'lint', ->
