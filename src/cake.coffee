@@ -9,7 +9,11 @@ module.exports = (task) ->
   
     
   task 'build', ->
-    run "rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && find . -name '*.js' -exec rsync -R {} ../lib \\;"
+    extensions = [ 'js', 'html', 'png', 'jpg', 'gif', 'css', 'md' ]
+    names = extensions.map (ext) ->
+      "-iname \\*.#{ext}"
+    find = "find . \\( #{names.join(' -o ')} \\)"
+    run "rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && #{find} -exec rsync -R {} ../lib \\;"
 
 
   task 'lint', ->
