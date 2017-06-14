@@ -13,7 +13,6 @@ module.exports = (task) ->
     names = extensions.map (ext) ->
       "-iname \\*.#{ext}"
     find = "find . \\( #{names.join(' -o ')} \\)"
-    console.log("rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && #{find} -exec rsync -R {} ../lib \\;")
     run "rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && #{find} -exec rsync -R {} ../lib \\;"
 
 
