@@ -9,7 +9,7 @@ module.exports = (task) ->
   
     
   task 'build', ->
-    run "rm -rf lib && #{coffeePath} -o lib -c src && cd src && find . -name '*.js' -exec rsync -R {} ../lib \\;"
+    run "rm -rf lib && ./node_modules/.bin/coffee -o lib -c src && cd src && find . -name '*.js' -exec rsync -R {} ../lib \\;"
 
 
   task 'lint', ->
