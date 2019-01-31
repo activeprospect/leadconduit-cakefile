@@ -22,24 +22,7 @@ module.exports = (task) ->
 
 
   task 'pdf', ->
-    docsPath = "#{process.cwd()}/docs"
-
-    log 'glob', "#{docsPath}/{,**/}*.md"
-    mdFiles = glob.sync "#{docsPath}/{,**/}*.md", nocase: true
-    return log('> no files in ./docs') unless mdFiles.length
-
-    version = require(path.join(process.cwd(), 'package.json')).version
-
-    # if there's a Google Drive symlink, output to that, otherwise use the same directory as the docs
-    drivePath = try fs.statSync('./drive') and './drive' catch
-
-    for mdFile in mdFiles
-      pdfDir = path.dirname(mdFile)
-      pdfDir = pdfDir.replace(docsPath, drivePath) if drivePath
-      fileBaseName = path.basename(mdFile, path.extname(mdFile))
-      pdfFile = "#{pdfDir}/#{fileBaseName}.#{version}.pdf"
-      log "creating #{pdfFile}..."
-      run "markdown-pdf #{mdFile} -o #{pdfFile}", stdio: [process.stdin, process.stdout, 'ignore']
+    return log('PDF generation no longer supported')
 
 
   option '-p', '--prefix', 'prefix for test files (prefix-string or dir/)'
