@@ -30,7 +30,7 @@ module.exports = (task) ->
     prefix = options.path or ''
     pattern = "spec/{,**/}#{prefix}*spec.coffee"
     log("Running tests at #{pattern}...")
-    run "NODE_ENV=test TZ=GMT mocha --compilers coffee:coffee-script/register --reporter spec --colors --recursive '#{pattern}'"
+    run "NODE_ENV=test TZ=GMT mocha --require coffee-script/register --reporter spec --colors --recursive '#{pattern}'"
 
 
 run = (args...) ->
