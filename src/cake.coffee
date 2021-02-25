@@ -1,13 +1,11 @@
 { spawn, exec } = require 'child_process'
 path = require 'path'
-fs = require 'fs'
-glob = require 'glob'
 log = console.log
 
 
 module.exports = (task) ->
-  
-    
+
+
   task 'build', ->
     extensions = [ 'js', 'html', 'png', 'jpg', 'gif', 'css', 'md' ]
     names = extensions.map (ext) ->
@@ -17,8 +15,7 @@ module.exports = (task) ->
 
 
   task 'lint', ->
-    coffeeLintPath = path.join(__dirname, '..', 'coffeelint.json')
-    run "coffeelint -f #{coffeeLintPath} src/*"
+    return log('CoffeeScript linting no longer supported')
 
 
   task 'pdf', ->
