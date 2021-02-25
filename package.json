@@ -15,11 +15,11 @@
     "prepublish": "cake build"
   },
   "dependencies": {
+    "coffee-script": ">= 1.7.0",
     "glob": "^7.0.5",
     "mocha": "^8.3.0"
   },
   "devDependencies": {
-    "chai": ">= 1.9.0",
-    "coffee-script": ">= 1.7.0"
+    "chai": ">= 1.9.0"
   }
 }
