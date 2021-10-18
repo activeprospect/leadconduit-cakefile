@@ -7,19 +7,11 @@
     "type": "git",
     "url": "https://github.com/activeprospect/leadconduit-cakefile.git"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
   "scripts": {
-    "test": "cake test",
     "prepublish": "cake build"
   },
   "dependencies": {
     "coffee-script": ">= 1.7.0",
-    "glob": "^7.0.5",
-    "mocha": "^8.3.0"
-  },
-  "devDependencies": {
-    "chai": ">= 1.9.0"
+    "glob": "^7.0.5"
   }
 }
