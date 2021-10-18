@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "coffee-script": ">= 1.7.0",
-    "glob": "^7.0.5"
+    "glob": "^7.0.5",
+    "mocha": "^9.1.3"
   }
 }
